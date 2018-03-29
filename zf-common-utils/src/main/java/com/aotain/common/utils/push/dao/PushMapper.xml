@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aotain.common.utils.push.dao.PushMapper">
+	<select id="getPushParams" resultType="com.aotain.common.utils.model.push.PushParam">
+		select TYPE "type",CS_VALUE "value" from idc_jcdm_jkcs where CS_KEY = 'push_service'
+	</select>
+
+	<select id="getNextId" resultType="Long">
+		SELECT SEQ_IDC_ISMS_PUSH_INFORMATION.NEXTVAL FROM DUAL
+		
+	</select>
+
+	<insert id="insertPushMessage" parameterType="com.aotain.common.utils.model.push.PushMessage">
+		<selectKey resultType="long" keyProperty="pushId" order="BEFORE">
+			SELECT SEQ_IDC_ISMS_PUSH_INFORMATION.NEXTVAL pushId FROM DUAL
+		</selectKey>
+		INSERT INTO IDC_ISMS_PUSH_INFORMATION (PUSHID, ALARM_CONTENT,
+		PUSH_TYPE, PUSH_STATUS, CREATE_TIME) VALUES (#{pushId},#{sendData},#{pushType}, 
+		0, SYSDATE)
+	</insert>
+	
+	<update id="updatePushMessageStatus">
+		UPDATE IDC_ISMS_PUSH_INFORMATION SET push_status=#{status},update_time=sysdate WHERE pushid=#{pushId}
+	</update>
+	
+	<select id="getHouseNameById" resultType="String">
+		SELECT housename FROM idc_isms_base_house WHERE houseid=#{houseId}
+	</select>
+	
+	<select id="getUserNameById" resultType="String">
+		SELECT unitname FROM idc_isms_base_user WHERE userid=#{userId}
+	</select>
+</mapper>
