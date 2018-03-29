@@ -67,5 +67,6 @@
     <module>zf-common-utils</module>
     <module>zf-common-policyapi</module>
     <module>zf-common-config</module>
+    <module>zf-common-test</module>
   </modules>
 </project>
