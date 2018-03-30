@@ -2,6 +2,7 @@ package com.aotain.common.config.dao;
 
 import com.aotain.common.config.annotation.MyBatisDao;
 import com.aotain.common.config.model.SystemConfigDict;
+import com.aotain.common.config.pagehelper.Page;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ import java.util.List;
 public interface SystemConfigDictMapper {
 
     List<SystemConfigDict> selectConfig();
+
+    List<SystemConfigDict> selectPageConfig(Page<SystemConfigDict> page);
 }

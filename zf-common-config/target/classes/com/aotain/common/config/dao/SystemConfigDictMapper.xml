@@ -20,4 +20,8 @@
         select * from zf_dict_system_config
     </select>
 
+
+    <select id="selectPageConfig"  resultMap="BaseResultMap">
+        select * from zf_dict_system_config order by config_id
+    </select>
 </mapper>

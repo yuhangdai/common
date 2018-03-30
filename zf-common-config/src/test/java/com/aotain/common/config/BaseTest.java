@@ -43,6 +43,9 @@ public class BaseTest {
     @Autowired
     private BaseRedisService<String, String, String> baseRedisServiceImpl;
 
+    @Autowired
+	private ConfigInitialingBean configInitialingBean;
+
     
     private static final String IDC_JDCM_JKCS_CONFIG = "idc_jdcm_jkcs_config";
 	
@@ -123,6 +126,13 @@ public class BaseTest {
 		System.out.println("====ok====="+result);
 		long removeZSet = baseRedisServiceImpl.removeZSet("StrategySorted_1_15","messageNo_1");
 		System.out.println(removeZSet+"======");
+	}
+
+	@Test
+	public void testMapper(){
+
+		configInitialingBean.initConfiguration();
+
 	}
 	
 }

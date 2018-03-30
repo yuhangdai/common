@@ -1,5 +1,6 @@
 package com.aotain.common.util;
 
+import com.aotain.common.utils.monitorstatistics.MonitorHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
@@ -28,6 +29,15 @@ public class BaseTest {
 
     @Test
     public void test(){
-
+        MonitorHelper.setLocal("out thread");
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MonitorHelper.setLocal("inside thread");
+                System.out.println("inside========="+MonitorHelper.getLocal());
+            }
+        });
+        thread.start();
+        System.out.println("out========="+MonitorHelper.getLocal());
     }
 }

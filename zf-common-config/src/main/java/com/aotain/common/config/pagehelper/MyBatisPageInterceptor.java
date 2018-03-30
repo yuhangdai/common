@@ -22,7 +22,7 @@ import java.util.Properties;
  * @date 2018/02/28
  */
 @Intercepts( {
-        @Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class}) })
+        @Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class,Integer.class}) })
 public class MyBatisPageInterceptor implements Interceptor {
 
     /** 数据库类型，不同的数据库有不同的分页方法 */

@@ -20,8 +20,12 @@ import java.util.List;
  * @author daiyh@aotain.com
  * @date 2017/11/14
  */
-@Repository
+//@Repository
 public class ConfigInitialingBean {
+
+	public ConfigInitialingBean(){
+		System.out.println("================");
+	}
 
 	public static final Logger logger = LoggerFactory.getLogger(ConfigInitialingBean.class);
 
@@ -44,7 +48,7 @@ public class ConfigInitialingBean {
 		}
 	}
 
-	private void initConfiguration() {
+	public void initConfiguration() {
 		logger.info("Initialize the system_config_dict configuration start....");
 		List<SystemConfigDict> systemConfigDictList = systemConfigDictMapper.selectConfig();
 		if (systemConfigDictList.isEmpty()) {
