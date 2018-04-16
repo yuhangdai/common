@@ -6,7 +6,7 @@ package com.aotain.mytest.thread.communication;
  * @author HP
  * @date 2018/04/16
  */
-public class ConProResource {
+public class ConProResource implements LockResource{
 
     private String name;
 
@@ -23,7 +23,7 @@ public class ConProResource {
     }
 
     public synchronized void produce(){
-        if ( exist ){
+        while ( exist ){
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -37,7 +37,7 @@ public class ConProResource {
     }
 
     public synchronized void consumer(){
-        if (!exist){
+        while ( !exist ){
             try {
                 this.wait();
             } catch (InterruptedException e) {

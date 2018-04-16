@@ -8,13 +8,13 @@ package com.aotain.mytest.thread.communication;
  */
 public class ConsumerThread implements Runnable{
 
-    private ConProResource conProResource;
+    private LockResource conProResource;
 
     public ConsumerThread(){
 
     }
 
-    public ConsumerThread(ConProResource conProResource){
+    public ConsumerThread(LockResource conProResource){
         this.conProResource = conProResource;
     }
 

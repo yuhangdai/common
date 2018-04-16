@@ -8,11 +8,11 @@ package com.aotain.mytest.thread.communication;
  */
 public class ProducerThread implements Runnable{
 
-    private ConProResource conProResource;
+    private LockResource conProResource;
 
     public ProducerThread(){}
 
-    public ProducerThread(ConProResource conProResource){
+    public ProducerThread(LockResource conProResource){
         this.conProResource = conProResource;
     }
 
