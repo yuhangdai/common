@@ -42,7 +42,7 @@ public class ConfigInitialingBean {
 	public void initConfig() {
 		logger.info("Initialize the system configuration start....");
 		try {
-			initConfiguration();
+//			initConfiguration();
 		} catch (Exception e) {
 			logger.info("Initialize the system configuration start exception ....",e);
 		}
