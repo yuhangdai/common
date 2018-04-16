@@ -43,8 +43,8 @@ public class BaseTest {
     @Autowired
     private BaseRedisService<String, String, String> baseRedisServiceImpl;
 
-    @Autowired
-	private ConfigInitialingBean configInitialingBean;
+//    @Autowired
+//	private ConfigInitialingBean configInitialingBean;
 
     
     private static final String IDC_JDCM_JKCS_CONFIG = "idc_jdcm_jkcs_config";
@@ -131,7 +131,7 @@ public class BaseTest {
 	@Test
 	public void testMapper(){
 
-		configInitialingBean.initConfiguration();
+//		configInitialingBean.initConfiguration();
 
 	}
 	

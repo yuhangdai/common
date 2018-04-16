@@ -2,11 +2,13 @@ package com.aotain.common.config;
 
 import com.aotain.common.config.redis.BaseRedisDao;
 import com.aotain.common.config.redis.BaseRedisService;
+import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Demo class
@@ -95,6 +97,33 @@ public class BaseRedisServiceTest extends BaseTest{
     public void addStrategyData(){
         String value = "{\"createTime\": 1517886727,\"totalPorts\": [{\"portNo\": 8787,\"portInfo\": \"22\",\"portUsage\": 30}],\"totalCPU\": [{\"cpuNo\": 8787,\"cpuUsage\": 30}]}";
         baseRedisServiceImpl.rightPush("Strategy_0_198",value);
+    }
+
+    @Test
+    public void testPutAll(){
+        String key = "putallhashkey";
+        long before  = System.currentTimeMillis();
+        Map<String,String> kvMap = Maps.newHashMap();
+        for (int i=0;i<10000;i++){
+            kvMap.put(i+"","value"+i);
+        }
+        baseRedisServiceImpl.putAllHash(key,kvMap);
+        long after  = System.currentTimeMillis();
+        System.out.println("it takes "+(after-before)+"ms");
+    }
+
+    @Test
+    public void testPutForEach(){
+        String key = "puthashkeyforeach";
+        long before  = System.currentTimeMillis();
+        Map<String,String> kvMap = Maps.newHashMap();
+        for (int i=0;i<10000;i++){
+            baseRedisServiceImpl.putHash(key,i+"","value_"+i);
+
+        }
+
+        long after  = System.currentTimeMillis();
+        System.out.println("it takes "+(after-before)+"ms");
     }
 
 }
