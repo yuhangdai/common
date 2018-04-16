@@ -53,7 +53,7 @@ public class LockConditionResource implements LockResource{
     public void consumer(){
         lock.lock();
         try{
-            while (!exist){
+            while (!exist){    // if while区别
                 consumerCondition.await();
             }
             System.out.println(Thread.currentThread().getName()+"=====消费==="+name+count);
