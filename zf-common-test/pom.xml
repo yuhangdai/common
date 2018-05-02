@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>test</artifactId>
+    <artifactId>zf-common-test</artifactId>
 
     <dependencies>
 
@@ -84,6 +84,15 @@
         </dependency>
 
         <!--     java bean赋值          -->
+
+        <!--     Google Core Libraries For Java       -->
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>24.1-jre</version>
+        </dependency>
+
 
     </dependencies>
 
