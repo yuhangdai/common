@@ -13,16 +13,19 @@ import java.util.concurrent.TimeUnit;
 public class FixedThreadPoolTest {
     public static void main(String[] args) {
         ConditionResource conditionResource = new ConditionResource();
-        ThreadPoolExecutor threadPoolExecutor =
+        ThreadPoolExecutor produceThreadPoolExecutor =
+                new ThreadPoolExecutor(2,2,0, TimeUnit.SECONDS,new LinkedBlockingQueue<>());
+        ThreadPoolExecutor consumerThreadPoolExecutor =
                 new ThreadPoolExecutor(3,3,0, TimeUnit.SECONDS,new LinkedBlockingQueue<>());
         for (int i=0;i<2;i++){
             ConsumerThread consumerThread = new ConsumerThread(conditionResource,i+"");
-            threadPoolExecutor.submit(consumerThread);
+            produceThreadPoolExecutor.submit(consumerThread);
         }
         for (int i=0;i<3;i++){
             ProducerThread producerThread = new ProducerThread(conditionResource,i+"");
-            threadPoolExecutor.submit(producerThread);
+            consumerThreadPoolExecutor.submit(producerThread);
         }
-        threadPoolExecutor.shutdown();
+        produceThreadPoolExecutor.shutdown();
+        consumerThreadPoolExecutor.shutdown();
     }
 }

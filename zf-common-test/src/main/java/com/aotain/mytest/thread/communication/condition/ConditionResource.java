@@ -19,13 +19,22 @@ public class ConditionResource {
     private  Lock lock = new ReentrantLock();
     private  Condition pro_condition = lock.newCondition();
     private  Condition con_condition = lock.newCondition();
+    private boolean exist = false;
 
     public void produce(String name){
         try{
             lock.lock();
+            while (exist){
+                pro_condition.await();
+            }
+
             System.out.println(" producer "+name+"is working..."+automic.getAndAdd(1));
+            exist = true;
             con_condition.signalAll();
-        }finally {
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
             lock.unlock();
         }
 
@@ -34,8 +43,15 @@ public class ConditionResource {
     public void consumer(String name){
         try{
             lock.lock();
+            while (!exist){
+                con_condition.await();
+            }
             System.out.println(" consumer "+name+"is working..."+automic.getAndAdd(1));
+            exist = false;
             pro_condition.signalAll();
+
+        }catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             lock.unlock();
         }
